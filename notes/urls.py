@@ -20,6 +20,7 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('registration.backends.simple.urls')),
     path("", views.list_notes, name='notes_list'),
     path('notes/<int:pk>/', views.note_detail, name='note_detail'),
     path('notes/add/', views.add_note, name='add_note'),

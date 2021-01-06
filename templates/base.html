@@ -16,6 +16,7 @@
     <div>
         {% block sidebar %}
             <div class="sidebar-nav">
+                <p>Hello {{ request.user.username }} </p>
                 <ul>
                     <a href="{% url 'notes_list' %}">Home</a>
                     <a href="{% url 'add_note' %}">Add Note</a>

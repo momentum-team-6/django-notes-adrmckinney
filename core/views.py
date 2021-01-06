@@ -1,12 +1,14 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .data import NOTES # the . stands for the current dir
 from .models import Note
 from .forms import NoteForm
 
 # Create your views here.
+# @login_required
 def list_notes(request):
-    notes = Note.objects.all()
-    return render(request, "index.html", {"notes": notes})
+    notes = Note.objects.all() #this will become Note.objects.filter(user=request.user) to show only those notes for the user whose loggedin
+    return render(request, "base.html", {"notes": notes})
 
 def note_detail(request, pk):
     note = get_object_or_404(Note, pk=pk)

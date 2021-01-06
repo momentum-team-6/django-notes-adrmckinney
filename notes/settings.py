@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     # Third-party
     'debug_toolbar',
     'django_extensions',
+    
 
     # Project-specific
     'core',
@@ -138,3 +140,10 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
+# Django Registration Redux
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = "/"
+SIMPLE_BACKEND_REDIRECT_URL = '/'
+
