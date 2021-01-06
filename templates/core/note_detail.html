@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% load tz %}
+
+{% block content %}
+    <h1>{{ note.title }}</h1>
+    <p>{{ note.body }}</p>
+
+    {% localtime on %}
+        {{ note.updated_at|localtime }}
+    {% endlocaltime %}
+    {{ note.created_at }}
+    
+    {% if note.updated_at == note.created_at %}
+        
+            <p>Created: {{ note.created_at }}</p>
+        
+    {% else %}
+        <p>Updated: {{ note.updated_at }}</p>
+    {% endif %}
+
+{% endblock %}
+

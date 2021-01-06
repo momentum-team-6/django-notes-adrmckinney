@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+
+{% block content %}
+    {% for note in notes %}
+    <h1>Title: {{ notes.title }}</h1>
+    <p>Body: {{ notes.body }}</p>
+    {% endfor % }
+{% endblock %}

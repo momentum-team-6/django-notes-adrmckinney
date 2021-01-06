@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <title>Notes</title>
+</head>
+<body>
+    {% block title %}
+        <p class="title">Notes Application</p>
+    {% endblock %}
+    <div>
+        {% block sidebar %}
+            <div class="sidebar-nav">
+                <ul>
+                    <a href="{% url 'notes_list' %}">Home</a>
+                    <a href="{% url 'add_note' %}">Add Note</a>
+                    <a href="">Categories</a>
+                    <ul>
+                        <a href="">all</a>
+                        <a href="">work</a>
+                    </ul> 
+                </ul>
+                
+            </div>
+        {% endblock %}
+    </div>
+    
+    <div class="main">
+        {% block content %}{% endblock %}
+        {% load tz %}
+        {% for note in notes %}
+            <div class="note-container">
+                <div class="note-title-content">
+                    <h3 class="note-title font-family: georgia, serif">{{ note.title }}</h3>
+                    <p class="note-content font-family: baskerville, serif">{{ note.body }}</p>
+                </div>    
+                <div class="note-footer">
+                    <p class="date-stamp">Created: {{ note.created_at|localtime }}</p>
+                    <div class="note-actions">
+                        <button class="" type="submit">
+                            <a href="{% url 'edit_note' pk=note.pk %}" class="action-buttons"><i class=" fas fa-edit"></i></a>
+                        </button>
+                        <button class="font-family: georgia, serif" type="submit">
+                            <a href="{% url 'delete_note' pk=note.pk %}" class="action-buttons"><i class="fas fa-trash-alt"></i></a>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        {% endfor %}
+        
+    </div>
+</body>
+</html>
+
+
+
+
+
+
