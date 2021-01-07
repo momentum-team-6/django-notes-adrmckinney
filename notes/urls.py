@@ -26,6 +26,7 @@ urlpatterns = [
     path('notes/add/', views.add_note, name='add_note'),
     path('notes/edit/<int:pk>', views.edit_note, name='edit_note'),
     path('notes/delete/<int:pk>', views.delete_note, name='delete_note'),
+    path('notes/search/', views.SearchResultsView.as_view(), name='search_results'),
 ]
 
 if settings.DEBUG:

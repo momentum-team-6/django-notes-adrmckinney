@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .data import NOTES # the . stands for the current dir
+from django.db.models import Q
+from django.views.generic import ListView
 from .models import Note
 from .forms import NoteForm
 
@@ -43,4 +45,15 @@ def delete_note(request, pk):
         note.delete()
         return redirect(to='notes_list')
     
-    return render(request, 'core/delete_note.html', {"note": note})
+    return render(request, "core/delete_note.html", {"note": note})
+
+class SearchResultsView(ListView):
+    model = Note
+    template_name = 'search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Note.objects.filter(title__icontains=query)
+        return object_list
+
+

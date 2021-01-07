@@ -3,11 +3,14 @@
 {% block content %}
 <h1>Delete Note</h1>
 
-    <form action="{% url 'delete_note' pk=note.pk %}">
+    <form action="{% url 'delete_note' pk=note.pk %}" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        <p>Are you sure you want to delete "{{ note.title }}"?</p>
         <div>
             <button type="submit">Delete Note</button>
         </div>
     </form>
+    <button type="submit">
+        <a href="{% url 'notes_list' %}">Cancel</a>
+    </button>
 {% endblock %}

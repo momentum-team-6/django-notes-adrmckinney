@@ -16,7 +16,12 @@
     <div>
         {% block sidebar %}
             <div class="sidebar-nav">
-                <p>Hello {{ request.user.username }} </p>
+
+                    <p>Welcome {{ request.user.username }} </p>
+                    <form action="{% url 'search_results' %}" method="GET">
+                        <input type="text" name="q" placeholder="Search...">
+                    </form>
+
                 <ul>
                     <a href="{% url 'notes_list' %}">Home</a>
                     <a href="{% url 'add_note' %}">Add Note</a>
